@@ -35,7 +35,7 @@ It should output the following data:
 
 Run the system with the input signal
 ```sh
-ghci> system2 sTest
+system2 sTest
 ```
 It should output the following data:
 ```sh
