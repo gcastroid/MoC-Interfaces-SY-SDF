@@ -11,9 +11,12 @@ For an installation guide please check: [ForSyDe Setup Page](https://forsyde.git
 stack ghci --package forsyde-shallow Interfaces.hs
 ```
 
-- In the ghc interpreter, check the input signal:
+In the ghc interpreter, check the input signal:
 ```sh
-ghci> sTest
+sTest
+```
+It must show the following signal:
+```sh
 {1,2,_,10,3,_}
 ```
 
@@ -21,7 +24,10 @@ ghci> sTest
 
 Run the system with the input signal
 ```sh
-ghci> system1 sTest
+system1 sTest
+```
+It should output the following data:
+```sh
 {10,40,160,290}
 ```
 
@@ -30,6 +36,9 @@ ghci> system1 sTest
 Run the system with the input signal
 ```sh
 ghci> system2 sTest
+```
+It should output the following data:
+```sh
 {10,40,_,160,290,_}
 ```
 
@@ -37,9 +46,13 @@ In the first example, the timing information is lost, and in the second exemple 
 
 ### Simulation of the RISC-V processor
 
-The RISC-V input signal is the sCtrl, it controls when it should switch from RV32I to RV32E. Run the following command to simulate the processor for 72 timestamps.
+The RISC-V input signal is the sCtrl signal, it controls when the processor should switch from RV32I to RV32E. Run the following command to simulate the processor for 72 timestamps.
 ```sh
-ghci> takeS 72 $ riscVsadf sCtrl
+takeS 72 $ riscVsadf sCtrl
+
+```
+It should output the following data, showing the generated Fibonacci numbers:
+```sh
 {_,0,1,_,1,_,2,_,_,_,_,3,_,_,_,_,5,_,_,_,_,8,_,_,_,_,
 13,_,_,_,_,21,_,_,_,_,34,_,_,_,_,55,_,_,_,_,89,_,_,_,_,
 144,_,_,_,_,233,_,_,_,_,377,_,_,_,_,610,_,_,_,_,987}
